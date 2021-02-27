@@ -1,0 +1,174 @@
+:root {
+  --blue: rgba(0, 183, 224, 1);
+  --red: rgba(255, 82, 51, 1);
+  --dark: #293756;
+}
+
+.team {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#blueTeam {
+  padding-right: 3rem;
+}
+
+#redTeam {
+  padding-left: 3rem;
+}
+
+.stats {
+  width: 100%;
+  display: flex;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 40pt;
+}
+
+#blueTeam .stats .kda {
+  color: var(--blue);
+}
+
+#blueTeam .stats .secondStat {
+  margin-left: auto;
+}
+
+#redTeam .stats .kda {
+  margin-left: auto;
+  color: var(--red);
+}
+
+/* Champion */
+.campions {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.campions img {
+  width: 80px;
+}
+
+.campions img:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+/* Spells */
+.spells {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1rem;
+}
+
+.spells img {
+  width: 37px;
+}
+
+.spells img:nth-child(even):not(:last-child) {
+  margin-bottom: 40px;
+}
+
+.spells img:nth-child(odd):not(:last-child) {
+  margin-bottom: 6px;
+}
+
+/* Data */
+.dmg,
+.data {
+  flex: 4;
+}
+
+.dataContainer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#redTeam .dataContainer {
+  align-items: flex-end;
+}
+
+.dataContainer:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+.dataContainer h3 {
+  font-size: 20pt;
+}
+
+.dataContainer h4 {
+  font-size: 20pt;
+}
+
+.dataContainer h5 {
+  font-size: 20pt;
+}
+
+#blueTeam .dataContainer h5 {
+  color: var(--blue);
+}
+
+#redTeam .dataContainer h5 {
+  color: var(--red);
+}
+
+.dataContainer h3.kda {
+  font-family: "Interstate", Courier, monospace;
+  font-weight: bold;
+  margin-top: -2px;
+}
+
+#blueTeam .dataContainer h3.kda {
+  margin-left: auto;
+  color: var(--blue);
+}
+#redTeam .dataContainer h3.kda {
+  margin-right: auto;
+  color: var(--red);
+}
+
+.firstRow {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+}
+
+#blueTeam .dataContainer .firstRow {
+  padding-right: 35%;
+}
+
+#redTeam .dataContainer .firstRow {
+  margin-left: auto;
+  padding-left: 35%;
+}
+
+.itemRow {
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#redTeam .dataContainer .itemRow {
+  align-items: flex-end;
+}
+
+.dataContainer .itemRow img {
+  width: 48px;
+}
+
+.dataContainer .info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Damage */
+.dmg {
+  display: none;
+}
