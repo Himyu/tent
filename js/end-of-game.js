@@ -161,6 +161,10 @@ function displayData () {
           const itemImg = document.createElement('img')
           itemImg.src = itemUrl(item)
           itemRow.appendChild(itemImg)
+        } else {
+          const emptyImg = document.createElement('div')
+          emptyImg.classList.add("emptyImg")
+          itemRow.appendChild(emptyImg)
         }
       }
       data.appendChild(itemRow)
@@ -190,6 +194,10 @@ function displayData () {
           const itemImg = document.createElement('img')
           itemImg.src = itemUrl(item)
           itemRow.appendChild(itemImg)
+        } else {
+          const emptyImg = document.createElement('div')
+          emptyImg.classList.add("emptyImg")
+          itemRow.appendChild(emptyImg)
         }
       }
       data.appendChild(itemRow)
