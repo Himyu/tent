@@ -35,6 +35,7 @@ const blueTeamSecondStat = document.querySelector('#blueTeam .stats .secondStat'
 const blueTeamCampions = document.querySelector('#blueTeam .campions')
 const blueTeamSpells = document.querySelector('#blueTeam .spells')
 const blueTeamData = document.querySelector('#blueTeam .data')
+const blueTeamDmg = document.querySelector('#blueTeam .dmg')
 
 // Team Red
 const redTeamKDA = document.querySelector('#redTeam .stats .kda')
@@ -42,6 +43,22 @@ const redTeamSecondStat = document.querySelector('#redTeam .stats .secondStat')
 const redTeamCampions = document.querySelector('#redTeam .campions')
 const redTeamSpells = document.querySelector('#redTeam .spells')
 const redTeamData = document.querySelector('#redTeam .data')
+const redTeamDmg = document.querySelector('#redTeam .dmg')
+
+var blueTeamStats = {
+  kills: 0,
+  deaths: 0,
+  assists: 0,
+  gold: 0,
+  dmg: 0
+}
+var redTeamStats = {
+  kills: 0,
+  deaths: 0,
+  assists: 0,
+  gold: 0,
+  dmg: 0
+}
 
 function displayChamps () {
   for (const participant of gameData.participants) {
@@ -74,19 +91,6 @@ function displaySpells () {
 }
 
 function displayData () {
-  var blueTeamStats = {
-    kills: 0,
-    deaths: 0,
-    assists: 0,
-    gold: 0
-  }
-  var redTeamStats = {
-    kills: 0,
-    deaths: 0,
-    assists: 0,
-    gold: 0
-  }
-
   for (const participant of gameData.participants) {
     const participantInfo = participants.find(p => p.participantId == participant.participantId)
 
@@ -139,7 +143,7 @@ function displayData () {
     const goldHeading = document.createElement('h5')
     goldHeading.innerHTML = "Gold"
     const goldText = document.createElement('h4')
-    goldText.innerHTML = calcGold(gold)
+    goldText.innerHTML = calcK(gold)
     goldDiv.appendChild(goldHeading)
     goldDiv.appendChild(goldText)
 
@@ -209,8 +213,52 @@ function displayData () {
   blueTeamKDA.innerHTML = `${blueTeamStats.kills} / ${blueTeamStats.deaths} / ${blueTeamStats.assists}`
   redTeamKDA.innerHTML = `${redTeamStats.kills} / ${redTeamStats.deaths} / ${redTeamStats.assists}`
 
-  blueTeamSecondStat.innerHTML = calcGold(blueTeamStats.gold)
-  redTeamSecondStat.innerHTML = calcGold(redTeamStats.gold)
+  blueTeamSecondStat.innerHTML = calcK(blueTeamStats.gold)
+  redTeamSecondStat.innerHTML = calcK(redTeamStats.gold)
+}
+
+function displayDmg () {
+  blueTeamData.style.display = 'none'
+  blueTeamDmg.style.display = 'block'
+  redTeamData.style.display = 'none'
+  redTeamDmg.style.display = 'block'
+
+  const dmgArray = gameData.participants.map(p => p.stats.totalDamageDealt)
+  const dmgMax = Math.max.apply(null,dmgArray)
+
+  for (const participant of gameData.participants) {
+    const dmg = participant.stats.totalDamageDealt
+    const ratio = Math.round((dmg / dmgMax) * 100)
+
+    const dmgContainer = document.createElement('div')
+    dmgContainer.classList.add('dmgContainer')
+
+    const dmgBar = document.createElement('div')
+    dmgBar.classList.add('dmgBar')
+    dmgBar.style.width = `calc(${ratio}% - 4rem)`
+
+    const dmgText = document.createElement('h3')
+    dmgText.innerHTML = calcK(dmg)
+
+    if (participant.teamId == 100) {
+      blueTeamStats.dmg += dmg
+
+      dmgContainer.appendChild(dmgBar)
+      dmgContainer.appendChild(dmgText)
+
+      blueTeamDmg.appendChild(dmgContainer)
+    } else {
+      redTeamStats.dmg += dmg
+
+      dmgContainer.appendChild(dmgText)
+      dmgContainer.appendChild(dmgBar)
+
+      redTeamDmg.appendChild(dmgContainer)
+    }
+  }
+
+  blueTeamSecondStat.innerHTML = calcK(blueTeamStats.dmg)
+  redTeamSecondStat.innerHTML = calcK(redTeamStats.dmg)
 }
 
 async function start () {
@@ -220,10 +268,11 @@ async function start () {
   displayChamps()
   displaySpells()
   displayData()
+  displayDmg()
 }
 start()
 
-function calcGold (amount) {
+function calcK (amount) {
   switch (true) {
     case amount > 1000:
       return `${Math.floor(amount / 1000)} k`

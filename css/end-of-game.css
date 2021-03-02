@@ -10,6 +10,7 @@
 
 #redTeam {
   padding-left: 3rem;
+  flex-wrap: wrap-reverse;
 }
 
 .stats {
@@ -21,6 +22,15 @@
 h2 {
   font-weight: bold;
   font-size: 40pt;
+}
+h3 {
+  font-size: 20pt;
+}
+h4 {
+  font-size: 20pt;
+}
+h5 {
+  font-size: 20pt;
 }
 
 #blueTeam .stats .kda {
@@ -73,7 +83,7 @@ h2 {
 /* Data */
 .dmg,
 .data {
-  flex: 1;
+  flex: 4;
 }
 
 .dataContainer {
@@ -86,18 +96,6 @@ h2 {
 
 .dataContainer:not(:last-child) {
   margin-bottom: 40px;
-}
-
-.dataContainer h3 {
-  font-size: 20pt;
-}
-
-.dataContainer h4 {
-  font-size: 20pt;
-}
-
-.dataContainer h5 {
-  font-size: 20pt;
 }
 
 #blueTeam .dataContainer h5 {
@@ -156,4 +154,45 @@ h2 {
 /* Damage */
 .dmg {
   display: none;
+}
+
+.dmgContainer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+#redTeam .dmgContainer {
+  justify-content: flex-end;
+}
+
+.dmgContainer .dmgBar {
+  height: 60px;
+  animation: scale 0.5s ease;
+}
+
+#blueTeam .dmgBar {
+  background-color: var(--blue);
+  transform-origin: left;
+  margin-right: 1rem;
+}
+
+#redTeam .dmgBar {
+  background-color: var(--red);
+  transform-origin: right;
+  margin-left: 1rem;
+}
+
+.dmgContainer:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+@keyframes scale {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
