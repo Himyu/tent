@@ -4,6 +4,17 @@
   background-color: var(--dark);
   display: flex;
   box-shadow: 3px 2px 9px 0px rgba(0, 0, 0, 0.25);
+  transform-origin: center bottom;
+  animation: in 0.5s;
+}
+
+@keyframes in {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
 
 .ban {
