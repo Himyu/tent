@@ -1,5 +1,5 @@
 .pub {
-  width: 100%;
+  width: fit-content;
   height: 150px;
   background-color: var(--dark);
   display: flex;
@@ -20,6 +20,7 @@
 .ban {
   width: 430px;
   height: 150px;
+  padding: 0 80px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
